@@ -1,6 +1,5 @@
 package com.limito.common.exception;
 
-import com.limito.common.code.ErrorCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
