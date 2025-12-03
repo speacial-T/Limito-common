@@ -1,4 +1,4 @@
-package com.limito.common.entity;
+package com.limito.common.audit;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
