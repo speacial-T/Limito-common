@@ -14,7 +14,7 @@ public class AppException extends RuntimeException {
 		this.status = status;
 	}
 
-	public static AppException of(HttpStatus status, String message) {
+	private static AppException of(HttpStatus status, String message) {
 		return new AppException(status, message);
 	}
 
