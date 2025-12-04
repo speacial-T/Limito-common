@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserContext {
 
-    private Long userId;
-    private String email;
-    private String role;
+	private Long userId;
+	private String email;
+	private String role;
 
-    public boolean hasRole(String role) {
-        return this.role != null && this.role.equals(role);
-    }
+	public boolean hasRole(String role) {
+		return this.role != null && this.role.equals(role);
+	}
 
-    public boolean isLoggedIn() {
-        return this.userId != null;
-    }
+	public boolean isLoggedIn() {
+		return this.userId != null;
+	}
 }
