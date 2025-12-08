@@ -25,6 +25,16 @@ public final class UserContextHolder {
 		return Optional.ofNullable(CONTEXT.get()).map(UserContext::getUserId);
 	}
 
+	public static Optional<String> getCurrentUserEmail() {
+		return Optional.ofNullable(CONTEXT.get()).map(UserContext::getEmail);
+	}
+
+	public static Optional<UserRole> getCurrentUserRole() {
+		return Optional.ofNullable(CONTEXT.get())
+			.map(UserContext::getRole)
+			.map(UserRole::valueOf);
+	}
+
 	public static void clear() {
 		CONTEXT.remove();
 	}
