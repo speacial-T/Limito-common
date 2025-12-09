@@ -13,7 +13,7 @@ public enum CommonErrorCode implements ErrorCode {
 	INTERNAL_SERVER_ERROR("서버 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR),
 
 	// 입력값 검증
-	INVALID_INPUT("잘못된 요청입니다.", HttpStatus.BAD_REQUEST),
+	BAD_REQUEST("잘못된 요청입니다.", HttpStatus.BAD_REQUEST),
 
 	// 인증/인가
 	UNAUTHORIZED("인증이 필요합니다.", HttpStatus.UNAUTHORIZED),

@@ -4,7 +4,6 @@ import java.nio.file.AccessDeniedException;
 
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import com.limito.common.code.CommonErrorCode;
 import com.limito.common.response.ErrorResponse;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,18 +37,16 @@ public class GlobalExceptionHandler {
 	// 인증/인가
 	@ExceptionHandler(AccessDeniedException.class)
 	public ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException exception) {
-		HttpStatus status = HttpStatus.FORBIDDEN;
-		String message = "접근 권한이 없습니다.";
-		log.error("[AccessDeniedException] {}", message, exception);
-		return ErrorResponse.errorResponse(status, message);
+		CommonErrorCode code = CommonErrorCode.FORBIDDEN;
+		log.error("[AccessDeniedException] {}", code.getMessage(), exception);
+		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
 	}
 
 	@ExceptionHandler(AuthenticationException.class)
 	public ResponseEntity<ErrorResponse> handleAuthentication(AuthenticationException exception) {
-		HttpStatus status = HttpStatus.UNAUTHORIZED;
-		String message = "인증이 필요합니다.";
-		log.error("[AuthenticationException] {}", message, exception);
-		return ErrorResponse.errorResponse(status, message);
+		CommonErrorCode code = CommonErrorCode.UNAUTHORIZED;
+		log.error("[AuthenticationException] {}", code.getMessage(), exception);
+		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
 	}
 
 	// 입력값 검증
@@ -61,49 +59,41 @@ public class GlobalExceptionHandler {
 		BindException.class
 	})
 	public ResponseEntity<ErrorResponse> handleValidation(Exception exception) {
-		HttpStatus status = HttpStatus.BAD_REQUEST;
-		String message = "요청 값이 유효하지 않습니다.";
-		log.error("[ValidationException] {}", message, exception);
-		return ErrorResponse.errorResponse(status, message);
+		CommonErrorCode code = CommonErrorCode.BAD_REQUEST;
+		log.error("[ValidationException] {}", code.getMessage(), exception);
+		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
 	}
 
 	// Http 요청
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	public ResponseEntity<ErrorResponse> handleMethodNotSupport(
 		HttpRequestMethodNotSupportedException exception) {
-
-		HttpStatus status = HttpStatus.METHOD_NOT_ALLOWED;
-		String message = "허용되지 않는 HTTP 메서드입니다.";
-		log.error("[HttpRequestMethodNotSupportedException] {}", message, exception);
-		return ErrorResponse.errorResponse(status, message);
+		CommonErrorCode code = CommonErrorCode.METHOD_NOT_ALLOWED;
+		log.error("[HttpRequestMethodNotSupportedException] {}", code.getMessage(), exception);
+		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
 	}
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public ResponseEntity<ErrorResponse> handleJsonParserError(
 		HttpMessageNotReadableException exception) {
-
-		HttpStatus status = HttpStatus.BAD_REQUEST;
-		String message = "요청 본문을 읽을 수 없습니다.";
-		log.error("[HttpMessageNotReadableException] {}", message, exception);
-		return ErrorResponse.errorResponse(status, message);
+		CommonErrorCode code = CommonErrorCode.BAD_REQUEST;
+		log.error("[HttpMessageNotReadableException] {}", code.getMessage(), exception);
+		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
 	}
 
 	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
 	public ResponseEntity<ErrorResponse> handleMediaTypeNotSupport(
 		HttpMediaTypeNotSupportedException exception) {
-
-		HttpStatus status = HttpStatus.UNSUPPORTED_MEDIA_TYPE;
-		String message = "지원하지 않는 Content-Type 입니다.";
-		log.error("[HttpMediaTypeNotSupportedException] {}", message, exception);
-		return ErrorResponse.errorResponse(status, message);
+		CommonErrorCode code = CommonErrorCode.UNSUPPORTED_MEDIA_TYPE;
+		log.error("[HttpMediaTypeNotSupportedException] {}", code.getMessage(), exception);
+		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
 	}
 
 	// 그 외 예외처리
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorResponse> handleException(Exception exception) {
-		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-		String message = "서버 오류가 발생했습니다.";
-		log.error("[Exception] {}", message, exception);
-		return ErrorResponse.errorResponse(status, message);
+		CommonErrorCode code = CommonErrorCode.INTERNAL_SERVER_ERROR;
+		log.error("[Exception] {}", code.getMessage(), exception);
+		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
 	}
 }
