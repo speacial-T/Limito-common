@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class UserContextFilter extends OncePerRequestFilter {
 
 	public static final String HEADER_USER_ID = "X-User-Id";
-	public static final String HEADER_USER_EMAIL = "X-User-Email";
 	public static final String HEADER_USER_ROLE = "X-User-Role";
 
 	@Override
@@ -25,7 +24,6 @@ public class UserContextFilter extends OncePerRequestFilter {
 		try {
 			// 1. 헤더에서 값 꺼내기
 			String userIdHeader = request.getHeader(HEADER_USER_ID);
-			String email = request.getHeader(HEADER_USER_EMAIL);
 			String role = request.getHeader(HEADER_USER_ROLE);
 
 			// 2. userId가 있으면 UserContext 세팅
@@ -38,7 +36,6 @@ public class UserContextFilter extends OncePerRequestFilter {
 
 				UserContext userContext = UserContext.builder()
 					.userId(userId)
-					.email(email)
 					.role(role)
 					.build();
 				UserContextHolder.set(userContext);

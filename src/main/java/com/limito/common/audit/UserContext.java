@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class UserContext {
 
 	private Long userId;
-	private String email;
 	private String role;
 
 	public boolean hasRole(String role) {
