@@ -29,7 +29,6 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ErrorResponse> handleAppException(AppException exception) {
 		log.error("[AppException] status={} message={}",
 			exception.getStatus(), exception.getMessage(), exception);
-
 		// AppException은 status + message만 사용
 		return ErrorResponse.errorResponse(exception.getStatus(), exception.getMessage());
 	}

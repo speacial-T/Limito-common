@@ -1,1 +1,2 @@
 com.limito.common.audit.CommonAutoConfiguration
+com.limito.common.security.SecurityAutoConfiguration
