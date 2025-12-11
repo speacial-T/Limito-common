@@ -38,14 +38,18 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException exception) {
 		CommonErrorCode code = CommonErrorCode.FORBIDDEN;
 		log.error("[AccessDeniedException] {}", code.getMessage(), exception);
-		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
+		String detail = exception.getMessage();
+		String message = code.getMessage() + (detail != null ? detail : "");
+		return ErrorResponse.errorResponse(code.getStatus(), message);
 	}
 
 	@ExceptionHandler(AuthenticationException.class)
 	public ResponseEntity<ErrorResponse> handleAuthentication(AuthenticationException exception) {
 		CommonErrorCode code = CommonErrorCode.UNAUTHORIZED;
 		log.error("[AuthenticationException] {}", code.getMessage(), exception);
-		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
+		String detail = exception.getMessage();
+		String message = code.getMessage() + (detail != null ? detail : "");
+		return ErrorResponse.errorResponse(code.getStatus(), message);
 	}
 
 	// 입력값 검증
@@ -60,7 +64,9 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ErrorResponse> handleValidation(Exception exception) {
 		CommonErrorCode code = CommonErrorCode.BAD_REQUEST;
 		log.error("[ValidationException] {}", code.getMessage(), exception);
-		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
+		String detail = exception.getMessage();
+		String message = code.getMessage() + (detail != null ? detail : "");
+		return ErrorResponse.errorResponse(code.getStatus(), message);
 	}
 
 	// Http 요청
@@ -69,7 +75,9 @@ public class GlobalExceptionHandler {
 		HttpRequestMethodNotSupportedException exception) {
 		CommonErrorCode code = CommonErrorCode.METHOD_NOT_ALLOWED;
 		log.error("[HttpRequestMethodNotSupportedException] {}", code.getMessage(), exception);
-		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
+		String detail = exception.getMessage();
+		String message = code.getMessage() + (detail != null ? detail : "");
+		return ErrorResponse.errorResponse(code.getStatus(), message);
 	}
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
@@ -77,7 +85,9 @@ public class GlobalExceptionHandler {
 		HttpMessageNotReadableException exception) {
 		CommonErrorCode code = CommonErrorCode.BAD_REQUEST;
 		log.error("[HttpMessageNotReadableException] {}", code.getMessage(), exception);
-		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
+		String detail = exception.getMessage();
+		String message = code.getMessage() + (detail != null ? detail : "");
+		return ErrorResponse.errorResponse(code.getStatus(), message);
 	}
 
 	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
@@ -85,7 +95,9 @@ public class GlobalExceptionHandler {
 		HttpMediaTypeNotSupportedException exception) {
 		CommonErrorCode code = CommonErrorCode.UNSUPPORTED_MEDIA_TYPE;
 		log.error("[HttpMediaTypeNotSupportedException] {}", code.getMessage(), exception);
-		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
+		String detail = exception.getMessage();
+		String message = code.getMessage() + (detail != null ? detail : "");
+		return ErrorResponse.errorResponse(code.getStatus(), message);
 	}
 
 	// 그 외 예외처리
@@ -93,6 +105,8 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ErrorResponse> handleException(Exception exception) {
 		CommonErrorCode code = CommonErrorCode.INTERNAL_SERVER_ERROR;
 		log.error("[Exception] {}", code.getMessage(), exception);
-		return ErrorResponse.errorResponse(code.getStatus(), code.getMessage());
+		String detail = exception.getMessage();
+		String message = code.getMessage() + (detail != null ? detail : "");
+		return ErrorResponse.errorResponse(code.getStatus(), message);
 	}
 }
