@@ -21,6 +21,13 @@ public class UserContextFilter extends OncePerRequestFilter {
 		FilterChain filterChain
 	) throws ServletException, IOException {
 
+		String path = request.getRequestURI();
+
+		if (isPublicPath(path)) {
+			filterChain.doFilter(request, response);
+			return;
+		}
+
 		try {
 			// 1. 헤더에서 값 꺼내기
 			String userIdHeader = request.getHeader(HEADER_USER_ID);
@@ -47,5 +54,14 @@ public class UserContextFilter extends OncePerRequestFilter {
 			// 4. 요청 완료 시 정리
 			UserContextHolder.clear();
 		}
+	}
+
+	private boolean isPublicPath(String path) {
+		return path.startsWith("/api/v1/auth/signup")
+			|| path.startsWith("/api/v1/auth/signup/admin")
+			|| path.startsWith("/api/v1/auth/login")
+			|| path.startsWith("/api/v1/resell-product/view")
+			|| path.startsWith("/api/v1/categories")
+			|| path.startsWith("/api/v1/limited-products/view");
 	}
 }
