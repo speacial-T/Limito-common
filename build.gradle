@@ -17,22 +17,22 @@ repositories {
 }
 
 dependencies {
-    // ✅ Lombok
+    // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.42'
     annotationProcessor 'org.projectlombok:lombok:1.18.42'
 
-    // ✅ Spring Boot Web
+    // Spring Boot Web
     implementation 'org.springframework.boot:spring-boot-starter-web:3.5.8'
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-aop:3.5.8'
 
 
-    // ✅ JPA
+    // JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.5.8'
 
-    // ✅ Core Starter
+    // Core Starter
     implementation 'org.springframework.boot:spring-boot-starter:3.5.8'
 
-    // ✅ Test
+    // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.8'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.12.2'
 }
