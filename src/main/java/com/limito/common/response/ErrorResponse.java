@@ -5,13 +5,15 @@ import org.springframework.http.ResponseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 public class ErrorResponse {
 
-	private final int status;
-	private final String message;
+	private int status;
+	private String message;
 
 	// HttpStatus + message 기반
 	public static ResponseEntity<ErrorResponse> errorResponse(HttpStatus status, String message) {

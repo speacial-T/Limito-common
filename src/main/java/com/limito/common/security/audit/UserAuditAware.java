@@ -1,9 +1,11 @@
-package com.limito.common.audit;
+package com.limito.common.security.audit;
 
 import java.util.Optional;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
+
+import com.limito.common.security.context.UserContextHolder;
 
 @Component
 public class UserAuditAware implements AuditorAware<Long> {

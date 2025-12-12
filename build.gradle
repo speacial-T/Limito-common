@@ -23,6 +23,7 @@ dependencies {
 
     // ✅ Spring Boot Web
     implementation 'org.springframework.boot:spring-boot-starter-web:3.5.8'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
 
 
     // ✅ JPA

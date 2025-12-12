@@ -11,12 +11,12 @@ public class AppException extends RuntimeException {
 
 	private final HttpStatus status;
 
-	public AppException(ErrorCode errorCode) {
+	private AppException(ErrorCode errorCode) {
 		super(errorCode.getMessage());
 		this.status = errorCode.getStatus();
 	}
 
-	public AppException(HttpStatus status, String message) {
+	private AppException(HttpStatus status, String message) {
 		super(message);
 		this.status = status;
 	}

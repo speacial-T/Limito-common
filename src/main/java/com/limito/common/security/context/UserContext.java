@@ -1,4 +1,4 @@
-package com.limito.common.audit;
+package com.limito.common.security.context;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
