@@ -57,7 +57,8 @@ public class UserContextFilter extends OncePerRequestFilter {
 	}
 
 	private boolean isPublicPath(String path) {
-		return path.startsWith("/api/v1/auth/signup")
+		return path.startsWith("/internal")
+			|| path.startsWith("/api/v1/auth/signup")
 			|| path.startsWith("/api/v1/auth/signup/admin")
 			|| path.startsWith("/api/v1/auth/login")
 			|| path.startsWith("/api/v1/resell-product/view")
