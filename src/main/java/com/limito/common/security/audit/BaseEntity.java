@@ -1,4 +1,4 @@
-package com.limito.common.audit;
+package com.limito.common.security.audit;
 
 import java.time.LocalDateTime;
 
@@ -7,6 +7,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.limito.common.security.context.UserContextHolder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -42,7 +44,7 @@ public abstract class BaseEntity {
 
 	public void softDelete() {
 		this.deletedAt = LocalDateTime.now();
-		this.deletedBy = com.limito.common.audit.UserContextHolder
+		this.deletedBy = UserContextHolder
 			.getCurrentUserId()
 			.orElse(0L);
 	}

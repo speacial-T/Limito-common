@@ -1,4 +1,4 @@
-package com.limito.common.audit;
+package com.limito.common.security.audit;
 
 public enum UserRole {
 

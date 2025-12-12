@@ -1,6 +1,8 @@
-package com.limito.common.audit;
+package com.limito.common.security.context;
 
 import java.util.Optional;
+
+import com.limito.common.security.audit.UserRole;
 
 public final class UserContextHolder {
 
@@ -8,6 +10,14 @@ public final class UserContextHolder {
 
 	public static void set(UserContext userContext) {
 		CONTEXT.set(userContext);
+	}
+
+	public static UserContext get() {
+		return CONTEXT.get();
+	}
+
+	public static Optional<UserContext> getCurrentUser() {
+		return Optional.ofNullable(CONTEXT.get());
 	}
 
 	public static Optional<Long> getCurrentUserId() {
