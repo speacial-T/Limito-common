@@ -5,16 +5,20 @@ import java.util.Arrays;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
 import com.limito.common.exception.AppException;
 import com.limito.common.security.audit.UserRole;
 import com.limito.common.security.context.UserContextHolder;
 
+@Aspect
+@Component
 public class PreAuthorizedAspect {
-	@Around("@within(com.limito.common.security.PreAuthorized) || "
-		+ "@annotation(com.limito.common.security.PreAuthorized)")
+	@Around("@within(com.limito.common.security.auth.PreAuthorized) || "
+		+ "@annotation(com.limito.common.security.auth.PreAuthorized)")
 	public Object checkAuthorization(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
 		MethodSignature signature = (MethodSignature)proceedingJoinPoint.getSignature();
